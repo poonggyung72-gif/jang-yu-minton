@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>장유클럽 배드민턴 경기 현황</title>
+<style>
+:root{--bg:#eaf1ee;--card:#fff;--tx:#12201b;--mu:#5d6b65;--ac:#0b6b50;--ac2:#d9efe6;--bd:#cfdad5;--hi:#f2d94e;--hit:#3d3400;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a16;--card:#18251f;--tx:#e8f1ed;--mu:#97a8a0;--ac:#3fbf93;--ac2:#1d3a2f;--bd:#2c3d35}}
+:root[data-theme="dark"]{--bg:#0f1a16;--card:#18251f;--tx:#e8f1ed;--mu:#97a8a0;--ac:#3fbf93;--ac2:#1d3a2f;--bd:#2c3d35}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--tx);font:15px/1.5 "Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;background-color:var(--bg);
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg transform='rotate(-30 75 75)' fill='%230b6b50' fill-opacity='.09'%3E%3Ccircle cx='75' cy='100' r='11'/%3E%3Cpath d='M64 92L50 50Q75 40 100 50L86 92Z'/%3E%3C/g%3E%3C/svg%3E")}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 14px 80px}
+.top{display:flex;align-items:center;justify-content:center;gap:4px}
+.top img{height:clamp(56px,14vw,92px);width:auto;flex:none}.top img:first-child{height:clamp(26.2px,6.5vw,43.0px)}
+h1{font-size:clamp(21px,5.4vw,34px);margin:0;text-align:center;line-height:1.25}
+.by{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--mu);margin:2px 2px 8px}#sync{font-weight:600}
+h2{font-size:16px;margin:20px 0 8px}
+.sub{color:var(--mu);font-size:18px;line-height:1.4;margin:2px 0 10px}
+.prog{margin-bottom:10px}
+.pb{height:14px;border-radius:8px;background:var(--ac2);overflow:hidden;margin-top:6px}
+.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--hi),var(--ac));transition:width .4s}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:6px;margin:10px 0}
+.steps button{flex:1;padding:8px 2px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font:inherit;font-size:24px;line-height:1.25;font-weight:600;cursor:pointer}
+.steps button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px}
+.court{border-top:5px solid var(--bd)}.court.live{border-top-color:var(--ac)}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700;gap:8px}
+.bd{font-size:12px;font-weight:600;background:var(--ac2);color:var(--ac);border-radius:20px;padding:1px 9px;white-space:nowrap}
+.bd.f{background:var(--hi);color:var(--hit)}
+.tm{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0;flex-wrap:wrap}
+.tg{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:6px;padding:0 5px;margin-right:4px;font-weight:700;font-size:13px}
+input[type=text],input[type=password],input[type=number],select{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:8px;width:100%}
+input[type=number]{text-align:center;font-weight:700}
+.sc{width:64px!important;font-size:17px}
+.pri{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer}
+.pri.w{width:100%;margin-top:6px}
+.gh{background:none;border:1px solid var(--bd);color:var(--tx);border-radius:8px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.mr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--bd);flex-wrap:wrap}
+.mr .t{flex:1;min-width:200px}
+.win{font-weight:700;color:var(--ac)}
+.mu{color:var(--mu);font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--bd)}
+th{color:var(--mu);font-weight:600;font-size:12px}
+td.l,th.l{text-align:left}
+tr.top td{font-weight:700;background:var(--ac2)}
+.q{display:flex;gap:8px;padding:6px 0;border-top:1px solid var(--bd)}.q .n{color:var(--mu);width:22px;text-align:right;flex:none}
+.pg{display:grid;grid-template-columns:1fr;gap:6px}
+.tl{margin-top:10px;padding-top:8px;border-top:1px dashed var(--bd);display:grid;gap:4px}
+.stp{display:flex;align-items:center;gap:14px;font-size:22px}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:18px}
+.md{font-size:17px;padding:6px 0;border-top:1px solid var(--bd)}
+.stk{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.stk select{flex:1;min-width:110px}
+.tr{display:flex;align-items:stretch;gap:22px;overflow-x:auto;padding:6px 2px}
+.c1{display:flex;flex-direction:column;justify-content:space-around;gap:14px}
+.c2,.c3{display:flex;flex-direction:column;justify-content:center}
+.mb{min-width:210px;border:1px solid var(--bd);border-radius:10px;padding:6px 8px;background:var(--bg);position:relative}
+.ml{font-size:12px;color:var(--mu);font-weight:600;margin-bottom:2px}
+.tt{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+.tt.w{color:var(--ac);font-weight:700}
+.c1 .mb::after{content:"";position:absolute;right:-22px;width:22px;border-right:2px solid var(--ac)}
+.c1 .mb:first-child::after{top:50%;height:calc(50% + 7px);border-top:2px solid var(--ac)}
+.c1 .mb:last-child::after{bottom:50%;height:calc(50% + 7px);border-bottom:2px solid var(--ac)}
+.c2 .mb::before{content:"";position:absolute;left:-22px;top:50%;width:22px;border-top:2px solid var(--ac)}
+.c2 .mb::after{content:"";position:absolute;right:-22px;top:50%;width:22px;border-top:2px solid var(--ac)}
+.ch1{min-width:120px;text-align:center;background:var(--hi);color:var(--hit);border-radius:10px;padding:10px 8px;font-weight:700}
+.trt{margin-top:12px;width:fit-content}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.dg{background:var(--card);color:var(--tx);border-radius:14px;padding:16px;max-width:460px;width:100%;max-height:85vh;display:flex;flex-direction:column;gap:10px}
+.dl{overflow:auto;border-top:1px solid var(--bd);padding-top:4px}
+.dbt{display:flex;gap:8px}.dbt button{flex:1}
+.chip{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:20px;padding:5px 12px;font:inherit;cursor:pointer}
+.chip.sel{background:var(--hi);color:var(--hit);border-color:var(--hi);font-weight:700}
+.tp{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:3px 0}
+div.mu{font-size:18px;line-height:1.4}
+.pi{display:flex;gap:4px}.pi input{min-width:0}
+.gb{border:1px solid var(--bd);background:var(--bg);color:var(--mu);border-radius:8px;padding:0 10px;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+.gb.on{background:var(--hi);color:var(--hit);border-color:var(--hi);font-weight:700}
+.eta{margin-top:8px;font-size:inherit;font-weight:700;color:var(--ac)}
+input:disabled,select:disabled,button:disabled{opacity:.55;cursor:not-allowed}
+#toast{display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;z-index:9;max-width:90vw}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <img src="data:image/webp;base64,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" alt="셔틀콕">
+    <h1>장유클럽 배드민턴 경기 현황</h1>
+    <img src="data:image/webp;base64,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" alt="스매싱하는 선수">
+  </div>
+  <div class="by"><span id="sync"></span><span>제작: tckang</span></div>
+  <div class="card prog" id="prog"></div>
+  <div class="steps" id="steps"></div>
+  <div id="app"></div>
+  <div class="nav" id="nav"></div>
+</div>
+<div id="dlg"></div><div id="lgd"></div><div id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+const KEY='jangyu-bd-v2',SN={S1:'준결승 1',S2:'준결승 2',F:'결승',T:'3·4위전'};
+let S,D={},T,ARM=false,RST=false,SEL=null;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mk=i=>({name:(i+1)+'조',nt:5,players:Array(10).fill(''),pro:Array(10).fill(false),teams:[]});
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  if(!S||!S.groups)S={step:1,groups:[0,1,2,3].map(mk),knock:[],courts:6,matches:[],sig:'',seq:0,mid:0}}
+let CFG=!!(window.FIREBASE_CONFIG&&window.FIREBASE_CONFIG.apiKey&&window.firebase),FDB=null,FAUTH=null,REF=null,LAST='',PT=null,CT=null,PEND=false,CONN=0,REV=0,USER=null,NOPERM=false,REX=null;
+const isTyping=()=>{const a=document.activeElement;return !!a&&/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)};
+const isRO=()=>CFG&&(!USER||NOPERM);
+function lock(){document.querySelectorAll('#app input,#app select,#app button').forEach(e=>{if(!e.hasAttribute('data-ok'))e.disabled=true})}
+function shared(){const o=Object.assign({},S);delete o.step;delete o.edit;return o}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}push()}
+function applyStr(j){
+  if(typeof j!=='string'||j===LAST)return;
+  let r;try{r=JSON.parse(j)}catch(e){return}
+  LAST=j;r.step=S.step;r.edit=null;S=r;
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+  if(isTyping())PEND=true;else render();
+}
+function push(){
+  if(!REF||!USER||NOPERM)return;clearTimeout(PT);
+  PT=setTimeout(async()=>{
+    const j=JSON.stringify(shared());if(!REF||!USER||j===LAST)return;
+    try{
+      const r=await FDB.runTransaction(async tx=>{const s=await tx.get(REF),cur=s.exists?s.data():null,cr=cur?(cur.rev||0):0;
+        if(cur&&cr!==REV)return{conflict:cur};
+        tx.set(REF,{v:j,rev:cr+1,t:Date.now()});return{rev:cr+1}});
+      if(r.conflict){REV=r.conflict.rev||0;if(r.conflict.v!==j)toast('다른 운영진이 먼저 저장했어요. 최신 내용으로 바꿨으니 다시 확인해 주세요.');LAST='';applyStr(r.conflict.v)}
+      else{REV=r.rev;LAST=j}
+    }catch(e){
+      LAST='';
+      if(e&&e.code==='permission-denied'){NOPERM=true;toast('이 계정은 입력 권한이 없어요. 운영진으로 등록된 계정으로 로그인해 주세요.');try{const s=await REF.get();if(s.exists){REV=s.data().rev||0;applyStr(s.data().v)}}catch(x){}stat();render()}
+      else{toast('저장하지 못했어요. 인터넷 연결을 확인해 주세요. 잠시 후 다시 시도해요.');PT=setTimeout(push,8000)}
+    }
+  },250);
+}
+function stat(){const e=$('#sync');if(!e)return;
+  const t=!CFG?'⚪ Firebase 미설정 · 이 기기에만 저장':CONN===0?'연결 중…':CONN===2?'⚠️ 연결 실패 · 이 기기 데이터 표시 중':CONN===3?'⚠️ 연결 지연 · 이 기기 데이터 표시 중':(USER?(NOPERM?'👁 권한 없음 · 보기 전용':'🟢 운영진 입력 중 · 실시간 공유'):'👁 보기 전용 · 실시간');
+  e.innerHTML=esc(t)+(CFG?' <button class="gh" id="lgb" onclick="loginBtn()">'+(USER?'로그아웃':'운영진 로그인')+'</button>':'')}
+function loginBtn(){
+  if(USER){FAUTH.signOut();return}
+  $('#lgd').innerHTML='<div class="ov"><div class="dg"><div class="ch">운영진 로그인</div><input type="text" id="lge" placeholder="이메일" autocomplete="username" inputmode="email"><input type="password" id="lgp" placeholder="비밀번호" autocomplete="current-password"><div class="dbt"><button class="pri" onclick="doLogin()">로그인</button><button class="gh" onclick="closeLg()">취소</button></div></div></div>';
+}
+function closeLg(){$('#lgd').innerHTML=''}
+function doLogin(){
+  const e=$('#lge').value.trim(),p=$('#lgp').value;
+  if(!e||!p)return toast('이메일과 비밀번호를 입력해 주세요.');
+  FAUTH.signInWithEmailAndPassword(e,p).then(()=>{closeLg();toast('운영진으로 로그인했어요.')}).catch(()=>toast('로그인하지 못했어요. 이메일과 비밀번호를 확인해 주세요.'));
+}
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(T);T=setTimeout(()=>e.style.display='none',3000)}
+const gn=i=>S.groups[i].name||(i+1)+'조';
+const ti=id=>+id.split(':')[1];
+const tn=id=>{const[g,t]=id.split(':');return S.groups[g].teams[t].map(i=>S.groups[g].players[i]||'?').join(' · ')};
+const lab=id=>'<span class="tg">'+esc(gn(+id.split(':')[0]))+'-'+(ti(id)+1)+'</span>'+esc(tn(id));
+const vk=()=>S.knock.filter(p=>p[0]!=null&&p[1]!=null);
+const allT=()=>S.groups.every(g=>g.teams.length===g.nt);
+const ready=()=>allT()&&S.tconf!==false;
+const man=()=>S.manual&&S.tconf===false&&allT();
+const M=(k,s)=>S.matches.find(m=>m.k===k&&m.s===s);
+const win=m=>m&&m.st==='done'?(m.sa>m.sb?m.a:m.b):null,los=m=>m&&m.st==='done'?(m.sa>m.sb?m.b:m.a):null;
+function rr(n){const m=n%2?n+1:n;let a=[...Array(m).keys()],R=[];for(let r=0;r<m-1;r++){const p=[];for(let i=0;i<m/2;i++){const x=a[i],y=a[m-1-i];if(x<n&&y<n)p.push([x,y])}R.push(p);a=[a[0],a[m-1],...a.slice(1,m-1)]}return n<2?[]:R}
+function stand(g){
+  const t=[...Array(S.groups[g].nt).keys()].map(i=>({id:g+':'+i,w:0,l:0,pf:0,pa:0,h:0}));
+  const ms=S.matches.filter(m=>m.g===g&&m.s==='L'&&m.st==='done');
+  ms.forEach(m=>{const A=t[ti(m.a)],B=t[ti(m.b)];A.pf+=m.sa;A.pa+=m.sb;B.pf+=m.sb;B.pa+=m.sa;if(m.sa>m.sb){A.w++;B.l++}else{B.w++;A.l++}});
+  ms.forEach(m=>{const W=t[ti(win(m))],L=t[ti(los(m))];if(W.w===L.w)W.h++});
+  return t.sort((x,y)=>y.w-x.w||y.h-x.h||(y.pf-y.pa)-(x.pf-x.pa)||y.pf-x.pf);
+}
+const gdone=g=>S.matches.filter(m=>m.g===g&&m.s==='L').every(m=>m.st==='done');
+function gen(){
+  let n=0;S.matches=[];D={};S.seq=0;
+  const R=S.groups.map(g=>rr(g.nt)),mx=Math.max(0,...R.map(r=>r.length));
+  for(let r=0;r<mx;r++)S.groups.forEach((g,gi)=>(R[gi][r]||[]).forEach(([x,y])=>S.matches.push({id:n++,g:gi,k:null,s:'L',a:gi+':'+x,b:gi+':'+y,st:'wait',court:null,sa:null,sb:null,fin:0})));
+  S.mid=n;ko();
+}
+function ko(){
+  vk().forEach(([x,y],k)=>{
+    const rd=gdone(x)&&gdone(y);
+    const ens=(s,a,b)=>{const m=M(k,s);
+      if(!a||!b){if(m&&m.st==='wait')S.matches=S.matches.filter(q=>q!==m);return}
+      if(m){if(m.st==='wait'){m.a=a;m.b=b}}else S.matches.push({id:S.mid++,g:null,k,s,a,b,st:'wait',court:null,sa:null,sb:null,fin:0})};
+    ens('S1',rd&&stand(x)[0].id,rd&&stand(y)[1].id);
+    ens('S2',rd&&stand(y)[0].id,rd&&stand(x)[1].id);
+    const a=M(k,'S1'),b=M(k,'S2');
+    ens('T',los(a),los(b));ens('F',win(a),win(b));
+  });
+}
+function sync(){
+  if(!ready()){if(S.matches.length){if(S.matches.some(m=>m.st==='done'))toast('구성이 바뀌어 경기 결과가 초기화됐어요.');S.matches=[]}S.sig='';return}
+  const s=JSON.stringify([S.groups.map(g=>[g.nt,g.teams]),vk()]);
+  if(s===S.sig)return;
+  if(S.matches.some(m=>m.st==='done'))toast('구성이 바뀌어 경기 결과가 초기화됐어요.');
+  gen();S.sig=s;
+}
+function fill(){
+  S.matches.forEach(m=>{if(m.st==='play'&&m.court>S.courts){m.st='wait';m.court=null}});
+  const lf={};S.matches.forEach(m=>{if(m.st==='done'){lf[m.a]=Math.max(lf[m.a]||0,m.fin);lf[m.b]=Math.max(lf[m.b]||0,m.fin)}});
+  for(let c=1;c<=S.courts;c++){
+    if(S.matches.some(m=>m.st==='play'&&m.court===c))continue;
+    const busy=new Set();S.matches.forEach(m=>{if(m.st==='play'){busy.add(m.a);busy.add(m.b)}});
+    const el=S.matches.filter(m=>m.st==='wait'&&!busy.has(m.a)&&!busy.has(m.b)&&!(m.s==='F'&&S.matches.some(q=>q.k===m.k&&q.s==='T'&&q.st!=='done')));
+    const m=el.find(m=>S.seq-(lf[m.a]||-99)>4&&S.seq-(lf[m.b]||-99)>4)||el[0];
+    if(m){m.st='play';m.court=c}
+  }
+}
+function conf(id){
+  const m=S.matches.find(m=>m.id===id),a=parseInt(D[id+'a']),b=parseInt(D[id+'b']);
+  if(isNaN(a)||isNaN(b)||a<0||b<0||a===b)return toast('두 팀 점수를 입력해 주세요. 동점은 입력할 수 없어요.');
+  m.st='done';m.sa=a;m.sb=b;m.fin=++S.seq;m.court=null;delete D[id+'a'];delete D[id+'b'];
+  ko();save();render();toast(tn(win(m))+' 팀 승리');
+}
+function locked(m){
+  if(m.s==='L')return vk().some(([x,y],k)=>(x===m.g||y===m.g)&&S.matches.some(q=>q.k===k&&q.st!=='wait'));
+  if(m.s==='S1'||m.s==='S2')return S.matches.some(q=>q.k===m.k&&(q.s==='F'||q.s==='T')&&q.st!=='wait');
+  return false;
+}
+function saveEdit(id){
+  const m=S.matches.find(m=>m.id===id),a=parseInt($('#ea').value),b=parseInt($('#eb').value);
+  if(isNaN(a)||isNaN(b)||a<0||b<0||a===b)return toast('두 팀 점수를 입력해 주세요. 동점은 입력할 수 없어요.');
+  if(locked(m))return toast('다음 단계 경기가 이미 시작되어 수정할 수 없어요.');
+  m.sa=a;m.sb=b;S.edit=null;ko();save();render();toast('점수를 수정했어요.');
+}
+function mn(m){if(m.s==='L')return gn(m.g)+' 예선';const[x,y]=vk()[m.k];return gn(x)+'·'+gn(y)+' 본선 '+SN[m.s]}
+const bd=m=>'<span class="bd'+(m.s==='L'?'':' f')+'">'+esc(mn(m))+'</span>';
+function row(m,ro){
+  let r;
+  if(S.edit===m.id&&!ro)r='<input class="sc" type="number" id="ea" min="0" value="'+m.sa+'"> : <input class="sc" type="number" id="eb" min="0" value="'+m.sb+'"> <button class="pri" onclick="saveEdit('+m.id+')">저장</button> <button class="gh" onclick="S.edit=null;render()">취소</button>';
+  else if(m.st==='done')r='<b>'+m.sa+' : '+m.sb+'</b>'+(ro?'':' <button class="gh" onclick="S.edit='+m.id+';render()">수정</button>');
+  else if(m.st==='play')r='<span class="bd">코트 '+m.court+' 진행 중</span>';
+  else r='<span class="mu">대기</span>';
+  const wa=m.st==='done'&&m.sa>m.sb,wb=m.st==='done'&&m.sb>m.sa;
+  return '<div class="mr"><div class="t"><div class="'+(wa?'win':'')+'">'+lab(m.a)+(wa?' ✓':'')+'</div><div class="'+(wb?'win':'')+'">'+lab(m.b)+(wb?' ✓':'')+'</div></div><div>'+r+'</div></div>';
+}
+function setN(n){n=Math.max(1,Math.min(10,n));while(S.groups.length<n)S.groups.push(mk(S.groups.length));S.groups.length=n;S.knock=S.knock.map(p=>p.map(x=>x!=null&&x<n?x:null));save();render()}
+function setNt(i,v){const g=S.groups[i];v=Math.max(1,Math.min(6,+v||1));if(v===g.nt)return;g.nt=v;while(g.players.length<v*2)g.players.push('');g.players.length=v*2;while(g.pro.length<v*2)g.pro.push(false);g.pro.length=v*2;g.teams=[];save();render()}
+function tl(i){const g=S.groups[i];
+  if(g.teams.length!==g.nt)return '<div class="mu">아직 팀이 편성되지 않았어요.</div>';
+  if(!man())return g.teams.map((t,k)=>'<div>'+lab(i+':'+k)+'</div>').join('');
+  return g.teams.map((t,k)=>'<div class="tp"><span class="tg">'+esc(gn(i))+'-'+(k+1)+'</span>'+t.map((pi,q)=>'<button class="chip'+(SEL===i+':'+k+':'+q?' sel':'')+'" onclick="pick('+i+','+k+','+q+')">'+esc(g.players[pi]||'?')+(g.pro[pi]?' ⭐':'')+'</button>').join('')+'</div>').join('')}
+function pick(i,k,q){const id=i+':'+k+':'+q;
+  if(!SEL||SEL===id){SEL=SEL===id?null:id;render();return}
+  const[ga,ka,qa]=SEL.split(':').map(Number);
+  if(ga!==i){const A=S.groups[ga],B=S.groups[i],ia=A.teams[ka][qa],ib=B.teams[k][q],x=A.players[ia];A.players[ia]=B.players[ib];B.players[ib]=x;const y2=A.pro[ia];A.pro[ia]=B.pro[ib];B.pro[ib]=y2;SEL=null;save();render();return}
+  const tt=S.groups[i].teams,x=tt[ka][qa];tt[ka][qa]=tt[k][q];tt[k][q]=x;SEL=null;save();render()}
+function modal(){
+  let h='<div class="ov"><div class="dg"><div class="ch">팀원 확정</div><div style="font-size:18px">자동으로 선정된 팀원을 이대로 확정할까요?</div><div class="dl">';
+  S.groups.forEach((g,i)=>{h+='<div class="mu" style="margin-top:8px">'+esc(gn(i))+'</div>'+g.teams.map((t,k)=>'<div>'+lab(i+':'+k)+'</div>').join('')});
+  return h+'</div><div class="dbt"><button class="pri" onclick="tYes()">예</button><button class="gh" onclick="tNo()">아니오</button></div></div></div>'}
+function tYes(){S.tconf=true;S.manual=false;SEL=null;save();render();toast('팀원을 확정했어요.')}
+function tNo(){S.manual=true;SEL=null;save();render();toast('바꿀 선수 두 명을 차례로 누르면 자리가 바뀌어요.')}
+function togPro(i,j){const g=S.groups[i];g.pro[j]=!g.pro[j];save();render()}
+const shf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function mkTeams(g){const idx=g.players.map((_,i)=>i),P=shf(idx.filter(i=>g.pro[i])),N=shf(idx.filter(i=>!g.pro[i])),T2=[];P.forEach(p=>T2.push([p,N.shift()]));while(N.length)T2.push([N.shift(),N.shift()]);g.teams=shf(T2)}
+function setPl(i,j,v){S.groups[i].players[j]=v;save();const e=document.getElementById('tl'+i);if(e)e.innerHTML=tl(i)}
+function shuf(){
+  if(S.groups.some(g=>g.players.some(p=>!p.trim())))return toast('비어 있는 선수 이름이 있어요. 모두 입력해 주세요.');
+  const bad=S.groups.findIndex(g=>g.pro.filter(Boolean).length>g.nt);
+  if(bad>=0)return toast(gn(bad)+': 고수가 '+S.groups[bad].nt+'명을 넘으면 한 팀에 한 명씩 나눌 수 없어요.');
+  if(S.matches.some(m=>m.st==='done')&&!ARM){ARM=true;render();return}
+  ARM=false;
+  S.groups.forEach(mkTeams);
+  S.tconf=false;S.manual=false;SEL=null;save();render();
+}
+function setK(k,p,v){S.knock[k][p]=v===''?null:+v;save();render()}
+function go(n){S.step=n;ARM=false;RST=false;S.edit=null;save();render();window.scrollTo(0,0)}
+const gate=()=>'<div class="card" style="font-size:18px">3단계에서 모든 선수 이름을 입력하고 <b>팀 자동 선정</b> 후 <b>팀원 확정</b>까지 마쳐 주세요.<div style="margin-top:8px"><button class="gh" onclick="go(3)">3단계로 이동</button></div></div>';
+function reset(){
+  if(!RST){RST=true;render();return}
+  RST=false;ARM=false;D={};try{localStorage.removeItem(KEY)}catch(e){}
+  S=null;load();render();window.scrollTo(0,0);toast('모든 내용을 초기화했어요.');
+}
+function vS1(){
+  let h='<div class="card"><div class="ch">그룹 수 (1~10개)</div><div class="stp"><button class="gh" onclick="setN(S.groups.length-1)">−</button><b>'+S.groups.length+'</b><button class="gh" onclick="setN(S.groups.length+1)">＋</button></div></div><div class="card tm" style="margin-top:10px"><span class="mu" style="font-size:18px">입력한 내용을 모두 지우고 처음 상태로 되돌려요. (실시간 공유 중이면 모든 기기에서 지워져요)</span><button class="gh" onclick="reset()">'+(RST?'정말 초기화할까요? (다시 누르면 삭제)':'초기화')+'</button></div><h2>그룹 이름</h2><div class="sub">1조, 2조처럼 원하는 이름으로 직접 입력하세요.</div><div class="grid">';
+  S.groups.forEach((g,i)=>{h+='<div class="card"><div class="mu">그룹 '+(i+1)+'</div><input type="text" value="'+esc(g.name)+'" placeholder="예: '+(i+1)+'조" oninput="S.groups['+i+'].name=this.value;save()"></div>'});
+  return h+'</div>';
+}
+function vS2(){
+  let h='<div class="sub">그룹마다 팀 수를 정하세요 (1~6팀). 한 팀은 2명이에요.</div><div class="grid">';
+  S.groups.forEach((g,i)=>{h+='<div class="card"><div class="ch"><span>'+esc(gn(i))+'</span><span class="bd">선수 '+g.nt*2+'명</span></div><select onchange="setNt('+i+',this.value)">'+[1,2,3,4,5,6].map(n=>'<option value="'+n+'"'+(n===g.nt?' selected':'')+'>'+n+'팀</option>').join('')+'</select></div>'});
+  return h+'</div>';
+}
+function vS3(){
+  let h='<button class="pri" onclick="shuf()">'+(ARM?'정말 다시 편성할까요? (경기 결과 삭제)':'팀 자동 선정')+'</button>'+(man()?' <button class="pri" onclick="tYes()">팀원 확정</button>':'')+(allT()&&S.tconf!==false?' <span class="bd">팀원 확정됨</span>':'')+(man()?'<div class="card" style="margin-top:8px;font-size:18px">✋ 수동 조정 중이에요. 바꿀 선수 두 명을 차례로 누르면 (다른 그룹 선수와도) 서로 자리가 바뀌어요. 다 끝나면 <b>팀원 확정</b>을 눌러 주세요. 자동으로 다시 팀원을 섞고 싶으면 <b>‘팀 자동 선정’</b>을 다시 누르세요.</div>':'')+'<div class="sub" style="margin-top:6px">선수 이름을 모두 입력하고, 실력이 높은 분은 <b>고수</b> 버튼으로 지정한 뒤 누르세요. 고수끼리는 한 팀이 되지 않아요 (그룹당 고수는 팀 수 이하). 다시 누르면 팀이 새로 섞여요. 이름을 고치면 팀 표시에 바로 반영돼요.</div><div class="grid">';
+  S.groups.forEach((g,i)=>{h+='<div class="card"><div class="ch"><span>'+esc(gn(i))+'</span><span class="bd">고수 '+g.pro.filter(Boolean).length+'명 (최대 '+g.nt+'명)</span></div><div class="pg">';
+    g.players.forEach((p,j)=>{h+='<div class="pi"><input type="text" placeholder="선수 '+(j+1)+'" value="'+esc(p)+'" oninput="setPl('+i+','+j+',this.value)"><button class="gb'+(g.pro[j]?' on':'')+'" onclick="togPro('+i+','+j+')">'+(g.pro[j]?'⭐고수':'고수')+'</button></div>'});
+    h+='</div><div class="tl" id="tl'+i+'">'+tl(i)+'</div></div>'});
+  return h+'</div>';
+}
+function vS4(){
+  const opts=(k,p)=>'<option value="">그룹 선택</option>'+S.groups.map((g,i)=>{const bad=g.nt<2||S.knock.some((q,kk)=>kk!==k?q.includes(i):q[1-p]===i);return '<option value="'+i+'"'+(S.knock[k][p]===i?' selected':'')+(bad?' disabled':'')+'>'+esc(gn(i))+(g.nt<2?' (1팀)':'')+'</option>'}).join('');
+  let h='<div class="card"><div class="ch">코트 수</div><input type="number" min="1" max="12" value="'+S.courts+'" onchange="S.courts=Math.max(1,Math.min(12,+this.value||6));save();render()"></div>'
+   +'<h2>예선과 본선</h2><div class="sub">예선은 그룹별 리그전이에요. 예선이 모두 끝나면 지정한 두 그룹이 본선을 치러요. 1위와 상대 그룹 2위가 맞붙는 준결승 2경기 후, 진 팀끼리 3·4위전을 먼저 치른 뒤 이긴 팀끼리 결승을 치러 최종 1·2·3위를 정해요. 본선을 지정하지 않은 그룹은 예선 순위가 최종 순위예요. (본선은 2팀 이상인 그룹만 가능)</div>';
+  S.knock.forEach((p,k)=>{h+='<div class="card tm" style="margin-bottom:8px"><span class="bd f">본선 '+(k+1)+'</span><div class="stk"><select onchange="setK('+k+',0,this.value)">'+opts(k,0)+'</select><span>↔</span><select onchange="setK('+k+',1,this.value)">'+opts(k,1)+'</select></div><button class="gh" onclick="S.knock.splice('+k+',1);save();render()">삭제</button></div>'});
+  if(S.knock.length<Math.floor(S.groups.length/2))h+='<button class="gh" onclick="S.knock.push([null,null]);save();render()">＋ 본선 추가</button>';
+  const used=new Set(vk().flat()),only=S.groups.map((g,i)=>i).filter(i=>!used.has(i));
+  return h+'<h2>예선만으로 종료되는 그룹</h2><div class="card">'+(only.length?only.map(i=>'<span class="bd" style="margin-right:6px">'+esc(gn(i))+'</span>').join(''):'<span class="mu">없어요.</span>')+'</div>';
+}
+function mb(m,pa,pb,lbl){
+  const d=m&&m.st==='done',wa=d&&m.sa>m.sb,wb=d&&m.sb>m.sa;
+  const t=(id,ph,sc,w)=>'<div class="tt'+(w?' w':'')+'"><span>'+(id?lab(id):'<span class="mu">'+ph+'</span>')+'</span>'+(sc!=null?'<b>'+sc+'</b>':'')+'</div>';
+  return '<div class="mb"><div class="ml">'+lbl+(m&&m.st==='play'?' · 코트 '+m.court+' 진행 중':m&&m.st==='wait'?' · 대기':'')+'</div>'+t(m&&m.a,pa,d?m.sa:null,wa)+t(m&&m.b,pb,d?m.sb:null,wb)+'</div>';
+}
+function tree(k){
+  const[x,y]=vk()[k],a=M(k,'S1'),b=M(k,'S2'),F=M(k,'F'),T=M(k,'T'),ch=win(F);
+  return '<div class="tr"><div class="c1">'+mb(a,gn(x)+' 1위',gn(y)+' 2위','준결승 1')+mb(b,gn(y)+' 1위',gn(x)+' 2위','준결승 2')+'</div><div class="c2">'+mb(F,'준결승 1 승자','준결승 2 승자','결승')+'</div><div class="c3"><div class="ch1">🏆 우승<br>'+(ch?lab(ch):'<span class="mu">미정</span>')+'</div></div></div><div class="trt">'+mb(T,'준결승 1 패자','준결승 2 패자','3·4위전')+'</div>';
+}
+function ptree(k,n){
+  const[x,y]=vk()[k];
+  return '<div class="tr"><div class="c1">'+mb(null,gn(x)+' 1위',gn(y)+' 2위','준결승 1 · '+n+'번')+mb(null,gn(y)+' 1위',gn(x)+' 2위','준결승 2 · '+(n+1)+'번')+'</div><div class="c2">'+mb(null,'준결승 1 승자','준결승 2 승자','결승 · '+(n+3)+'번')+'</div><div class="c3"><div class="ch1">🏆 우승<br><span class="mu">미정</span></div></div></div><div class="trt">'+mb(null,'준결승 1 패자','준결승 2 패자','3·4위전 · '+(n+2)+'번')+'</div>';
+}
+function bracketHtml(){
+  const d=new Date(),p=n=>String(n).padStart(2,'0'),ds=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
+  const L=S.matches.filter(m=>m.s==='L'),kp=vk(),num={},tm={};
+  L.forEach((m,i)=>{num[m.id]=i+1;(tm[m.a]=tm[m.a]||[]).push(i+1);(tm[m.b]=tm[m.b]||[]).push(i+1)});
+  const P=[];
+  S.groups.forEach((g,i)=>g.teams.forEach((t,k)=>t.forEach((pi,q)=>P.push({n:g.players[pi]||'?',g:gn(i),mate:g.players[t[1-q]]||'?',ms:tm[i+':'+k]||[]}))));
+  P.sort((a,b)=>a.n.localeCompare(b.n,'ko'));
+  let b='<h2>참가자별 안내</h2><div class="card"><div style="overflow-x:auto"><table><tr><th class="l">이름</th><th>그룹</th><th class="l">팀원</th><th class="l">예선 경기 순서</th></tr>'+P.map(r=>'<tr><td class="l"><b>'+esc(r.n)+'</b></td><td>'+esc(r.g)+'</td><td class="l">'+esc(r.mate)+'</td><td class="l">'+(r.ms.length?r.ms.map(x=>x+'번째').join(', '):'-')+'</td></tr>').join('')+'</table></div></div>';
+  b+='<h2>그룹·팀 편성</h2><div class="grid">';
+  S.groups.forEach((g,i)=>{b+='<div class="card"><div class="ch"><span>'+esc(gn(i))+'</span><span class="bd">'+g.nt+'팀</span></div>'+g.teams.map((t,k)=>'<div>'+lab(i+':'+k)+'</div>').join('')+'</div>'});
+  b+='</div><h2>예선 경기 순서 (조별 리그전)</h2><div class="sub">코트 '+S.courts+'개에서 아래 순서대로 진행해요. 진행 상황에 따라 순서가 일부 바뀔 수 있어요.</div><div class="card">'+(L.length?L.map(m=>'<div class="q"><span class="n">'+num[m.id]+'</span><div>'+bd(m)+' '+lab(m.a)+' <span class="mu">vs</span> '+lab(m.b)+'</div></div>').join(''):'<div class="mu">예선 경기가 없어요.</div>')+'</div>';
+  if(kp.length){b+='<h2>본선 토너먼트</h2><div class="grid">';
+    kp.forEach(([x,y],k)=>{b+='<div class="card" style="grid-column:1/-1"><div class="ch"><span>'+esc(gn(x)+'·'+gn(y))+'</span><span class="bd f">본선</span></div>'+ptree(k,L.length+k*4+1)+'</div>'});b+='</div>'}
+  return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>장유클럽 배드민턴 경기 대진표</title><style>'+document.querySelector('style').textContent+'</style></head><body><div class="wrap">'+topHtml('장유클럽 배드민턴 경기 대진표')+'<div class="by"><span>저장 시각: '+ds+'</span><span>제작: tckang</span></div>'+b+'</div></body></html>';
+}
+function vS5(){return ready()?'<button class="pri" onclick="saveBr()" data-ok="1">📋 경기 대진표 저장하기</button> <button class="pri" onclick="saveBrImg()" data-ok="1">🖼️ 그림으로 저장</button><div class="sub" style="margin-top:6px">그룹·팀 편성, 예선 경기 순서, 본선 토너먼트 대진을 한 화면 파일(HTML)로 저장해요. 파일을 참가자들에게 공유하면 각자 소속 그룹, 팀원, 경기 순서를 미리 볼 수 있어요.</div>'+vS5b():gate()}
+function vS5b(){
+  if(!ready())return gate();
+  let h='<div class="grid">';
+  for(let c=1;c<=S.courts;c++){
+    const m=S.matches.find(m=>m.st==='play'&&m.court===c);
+    if(!m){h+='<div class="card court"><div class="ch">코트 '+c+'</div><div class="mu">배정할 경기가 없어요.</div></div>';continue}
+    const inp=k=>'<input class="sc" type="number" inputmode="numeric" min="0" value="'+esc(D[m.id+k]==null?'':D[m.id+k])+'" oninput="D[\''+m.id+k+'\']=this.value">';
+    h+='<div class="card court live"><div class="ch"><span>코트 '+c+'</span>'+bd(m)+'</div><div class="tm"><div>'+lab(m.a)+'</div>'+inp('a')+'</div><div class="tm"><div>'+lab(m.b)+'</div>'+inp('b')+'</div><button class="pri w" onclick="conf('+m.id+')">결과 확정</button></div>';
+  }
+  h+='</div>';
+  const w=S.matches.filter(m=>m.st==='wait');
+  h+='<h2>다음 경기 순서 ('+w.length+')</h2><div class="card">';
+  if(!w.length)h+='<div class="mu">'+(S.matches.some(m=>m.st==='play')?'대기 중인 경기가 없어요. 진행 중인 경기가 끝나면 다음 단계가 열려요.':'모든 경기가 끝났어요. 6단계에서 결과를 확인하세요.')+'</div>';
+  w.slice(0,14).forEach((m,i)=>{h+='<div class="q"><span class="n">'+(i+1)+'</span><div>'+bd(m)+' '+lab(m.a)+' <span class="mu">vs</span> '+lab(m.b)+'</div></div>'});
+  if(w.length>14)h+='<div class="mu" style="margin-top:6px">외 '+(w.length-14)+'경기</div>';
+  h+='</div><div class="sub" style="margin-top:8px">코트가 비면 같은 팀이 연속으로 뛰지 않도록 순서가 일부 바뀔 수 있어요. 본선은 예선이 끝나면 자동으로 추가돼요.</div>';
+  const kp=vk();
+  if(kp.length){h+='<h2>본선</h2><div class="grid">';
+    kp.forEach(([x,y],k)=>{const ms=['S1','S2','F','T'].map(s=>M(k,s)).filter(Boolean);
+      h+='<div class="card" style="grid-column:1/-1"><div class="ch"><span>'+esc(gn(x)+'·'+gn(y))+'</span><span class="bd f">본선</span></div>'+tree(k)+(ms.length?'<details style="margin-top:10px"><summary class="mu">경기 결과 수정</summary>'+ms.map(row).join('')+'</details>':'<div class="mu" style="margin-top:8px">두 그룹의 예선이 끝나면 자동 편성돼요. (남은 예선 '+S.matches.filter(m=>(m.g===x||m.g===y)&&m.st!=='done').length+'경기)</div>')+'</div>'});
+    h+='</div>'}
+  h+='<h2>조별 순위와 예선 결과</h2><div class="grid">';
+  S.groups.forEach((g,i)=>{const ok=gdone(i),st=stand(i),ms=S.matches.filter(m=>m.g===i&&m.s==='L');
+    h+='<div class="card"><div class="ch"><span>'+esc(gn(i))+'</span><span class="bd">'+(ok?'예선 종료':ms.filter(m=>m.st==='done').length+'/'+ms.length+' 경기')+'</span></div>';
+    if(g.nt<2)h+='<div class="mu">1팀뿐이라 경기가 없어요.</div></div>';
+    else{h+='<table><tr><th>순위</th><th class="l">팀</th><th>승</th><th>패</th><th>득실</th></tr>';
+      st.forEach((t,j)=>{h+='<tr class="'+(ok&&j===0?'top':'')+'"><td>'+(j+1)+'</td><td class="l">'+lab(t.id)+'</td><td>'+t.w+'</td><td>'+t.l+'</td><td>'+(t.pf-t.pa>0?'+':'')+(t.pf-t.pa)+'</td></tr>'});
+      h+='</table><div class="mu" style="margin:6px 0">순위 기준: 승수 → 승자승 → 득실차 → 득점</div>'+ms.map(row).join('')+'</div>'}});
+  return h+'</div>';
+}
+function med(ids){return ids.map((id,i)=>'<div class="md">'+['🥇 1위','🥈 2위','🥉 3위'][i]+' '+(id?lab(id):'<span class="mu">미정</span>')+'</div>').join('')}
+const stamp=()=>{const d=new Date(),p=n=>String(n).padStart(2,'0');return ''+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes())};
+const topHtml=t=>document.querySelector('.top').outerHTML.replace('장유클럽 배드민턴 경기 현황',t);
+async function saveRes(){return dlFile('장유클럽 배드민턴 경기 결과.html',snapHtml())}
+async function saveBr(){return dlFile('장유클럽 배드민턴 경기 대진표.html',bracketHtml())}
+const CF='"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif';
+function rrect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+const tlab=id=>gn(+id.split(':')[0])+'-'+(ti(id)+1)+' '+tn(id);
+async function pngOf(kind){
+  const W=900,PD=28,IX=PD+16,IW=W-2*PD-32,INK='#12201b',MU='#5d6b65',AC='#0b6b50',BD='#cfdad5',cmds=[];let H=0;
+  const mc=document.createElement('canvas').getContext('2d');
+  const fit=(s,mw,f)=>{mc.font=f;s=String(s);if(mc.measureText(s).width<=mw)return s;while(s.length>1&&mc.measureText(s+'…').width>mw)s=s.slice(0,-1);return s+'…'};
+  const add=(h,fn)=>{cmds.push([H,fn]);H+=h};
+  const sep=(c,y)=>{c.strokeStyle=BD;c.lineWidth=1;c.beginPath();c.moveTo(IX,y+35.5);c.lineTo(W-PD-16,y+35.5);c.stroke()};
+  const h2=s=>add(54,(c,y)=>{c.font='700 26px '+CF;c.fillStyle=AC;c.fillText(s,IX,y+38)});
+  const sub=s=>add(40,(c,y)=>{const f='700 21px '+CF;c.font=f;c.fillStyle=INK;c.fillText(fit(s,IW,f),IX,y+28)});
+  const note=s=>add(32,(c,y)=>{const f='400 17px '+CF;c.font=f;c.fillStyle=MU;c.fillText(fit(s,IW,f),IX,y+22)});
+  const line=(l,r,b)=>add(36,(c,y)=>{const f=(b?'700 ':'400 ')+'19px '+CF;c.font=f;c.fillStyle=INK;mc.font=f;const rw=r?mc.measureText(r).width+16:0;c.fillText(fit(l,IW-rw,f),IX,y+25);if(r){c.textAlign='right';c.fillText(r,W-PD-16,y+25);c.textAlign='left'}sep(c,y)});
+  const tbl=(hd,rows,fr,al)=>{const xs=[];let a=0;fr.forEach(f=>{xs.push(IX+a*IW);a+=f});
+    const row=(cs,b)=>add(36,(c,y)=>{const f=(b?'700 ':'400 ')+'19px '+CF;c.font=f;c.fillStyle=b?MU:INK;cs.forEach((t,i)=>{const al2=al[i]||'left';c.textAlign=al2;const x=al2==='center'?xs[i]+fr[i]*IW/2:xs[i];c.fillText(fit(t,fr[i]*IW-12,f),x,y+25)});c.textAlign='left';sep(c,y)});
+    row(hd,true);rows.forEach(r=>row(r,false))};
+  const bx=(c,x,y,w,h,lbl,A,B,sa,sb)=>{c.fillStyle='#f4f8f6';c.strokeStyle=BD;c.lineWidth=1.5;rrect(c,x,y,w,h,10);c.fill();c.stroke();
+    c.font='600 15px '+CF;c.fillStyle=MU;c.fillText(lbl,x+10,y+20);
+    [[A,sa,sa!=null&&sa>sb],[B,sb,sb!=null&&sb>sa]].forEach(([t,s,wn],i)=>{const f=(wn?'700 ':'400 ')+'17px '+CF,yy=y+44+i*26;c.font=f;c.fillStyle=wn?AC:INK;c.fillText(fit(t,w-(s!=null?60:20),f),x+10,yy);if(s!=null){c.textAlign='right';c.fillText(String(s),x+w-10,yy);c.textAlign='left'}})};
+  const tree=(k,ph,n)=>{
+    const[x,y]=vk()[k],g={S1:M(k,'S1'),S2:M(k,'S2'),F:M(k,'F'),T:M(k,'T')},BW=268,BH=76,X1=IX,X2=X1+BW+46,X3=X2+BW+34,CW=W-PD-16-X3;
+    const sp={S1:[gn(x)+' 1위',gn(y)+' 2위'],S2:[gn(y)+' 1위',gn(x)+' 2위'],F:['준결승 1 승자','준결승 2 승자'],T:['준결승 1 패자','준결승 2 패자']};
+    add(3*BH+80,(c,Y)=>{const y0=Y+8,y1=y0+BH+22,yf=y0+(BH+22)/2,yt=y1+BH+28;
+      c.strokeStyle=AC;c.lineWidth=2;c.beginPath();c.moveTo(X1+BW,y0+BH/2);c.lineTo(X1+BW+23,y0+BH/2);c.lineTo(X1+BW+23,y1+BH/2);c.moveTo(X1+BW,y1+BH/2);c.lineTo(X1+BW+23,y1+BH/2);c.moveTo(X1+BW+23,yf+BH/2);c.lineTo(X2,yf+BH/2);c.moveTo(X2+BW,yf+BH/2);c.lineTo(X3,yf+BH/2);c.stroke();
+      [['S1','준결승 1',X1,y0,0],['S2','준결승 2',X1,y1,1],['F','결승',X2,yf,3],['T','3·4위전 (결승보다 먼저)',X2,yt,2]].forEach(([s,lb,xx,yy,o])=>{const m=g[s],d=m&&m.st==='done';bx(c,xx,yy,BW,BH,lb+(ph?' · '+(n+o)+'번':''),m?tlab(m.a):sp[s][0],m?tlab(m.b):sp[s][1],d?m.sa:null,d?m.sb:null)});
+      const F=g.F,fw=F&&F.st==='done'?tlab(win(F)):null;
+      c.fillStyle='#f2d94e';rrect(c,X3,yf,CW,BH,10);c.fill();c.fillStyle='#3d3400';c.font='700 18px '+CF;c.fillText('🏆 우승',X3+12,yf+30);c.font='400 16px '+CF;c.fillText(fit(fw||'미정',CW-20,'400 16px '+CF),X3+12,yf+56)})};
+  const d0=new Date(),p2=n=>String(n).padStart(2,'0'),ds=d0.getFullYear()+'-'+p2(d0.getMonth()+1)+'-'+p2(d0.getDate())+' '+p2(d0.getHours())+':'+p2(d0.getMinutes());
+  const title=kind==='res'?'장유클럽 배드민턴 경기 결과':'장유클럽 배드민턴 경기 대진표',imgs=[...document.querySelectorAll('.top img')];
+  add(150,(c,y)=>{c.font='800 36px '+CF;const tw=c.measureText(title).width,hs=[56,108],ws=imgs.map((im,i)=>im.naturalWidth*hs[i]/(im.naturalHeight||1)),g=14,tot=tw+(ws[0]||0)+(ws[1]||0)+2*g;let x=(W-tot)/2;
+    if(imgs[0]){c.drawImage(imgs[0],x,y+38,ws[0],hs[0]);x+=ws[0]+g}
+    c.fillStyle=INK;c.fillText(title,x,y+86);x+=tw+g;
+    if(imgs[1])c.drawImage(imgs[1],x,y+14,ws[1],hs[1])});
+  add(36,(c,y)=>{c.font='400 16px '+CF;c.fillStyle=MU;c.fillText('저장 시각: '+ds,PD,y+22);c.textAlign='right';c.fillText('제작: tckang',W-PD,y+22);c.textAlign='left'});
+  const top=H;add(10,()=>{});
+  if(kind==='res'){
+    const kp=vk(),inK=new Set(kp.flat());
+    h2('최종 결과');
+    const med=ids=>ids.forEach((id,i)=>line(['🥇 1위','🥈 2위','🥉 3위'][i]+'   '+(id?tlab(id):'미정'),null,i===0&&!!id));
+    S.groups.forEach((g,i)=>{if(inK.has(i))return;sub(gn(i)+' · '+(gdone(i)?'예선 최종':'예선 진행 중 (현재 순위)'));med(stand(i).slice(0,3).map(t=>t.id))});
+    kp.forEach(([x,y],k)=>{const F=M(k,'F'),T=M(k,'T');sub(gn(x)+'·'+gn(y)+' 본선 · '+(F&&F.st==='done'&&T&&T.st==='done'?'최종':'진행 중'));med([win(F),los(F),win(T)])});
+    if(kp.length){h2('본선 토너먼트');kp.forEach(([x,y],k)=>{sub(gn(x)+'·'+gn(y)+' 본선');tree(k,false,0)})}
+    h2('조별 순위와 예선 결과');
+    S.groups.forEach((g,i)=>{const ms=S.matches.filter(m=>m.g===i&&m.s==='L');sub(gn(i)+' · '+(gdone(i)?'예선 종료':ms.filter(m=>m.st==='done').length+'/'+ms.length+' 경기'));
+      if(g.nt<2){note('1팀뿐이라 경기가 없어요.');return}
+      tbl(['순위','팀','승','패','득실'],stand(i).map((t,j)=>[String(j+1),tlab(t.id),String(t.w),String(t.l),(t.pf-t.pa>0?'+':'')+(t.pf-t.pa)]),[.1,.5,.12,.12,.16],['center','left','center','center','center']);
+      ms.forEach(m=>line(tlab(m.a)+' vs '+tlab(m.b),m.st==='done'?m.sa+' : '+m.sb:m.st==='play'?'코트 '+m.court+' 진행 중':'대기'))});
+    h2('코트 현황');
+    for(let c2=1;c2<=S.courts;c2++){const m=S.matches.find(m=>m.st==='play'&&m.court===c2);line('코트 '+c2+'  '+(m?tlab(m.a)+' vs '+tlab(m.b):'비어 있음'))}
+    const w=S.matches.filter(m=>m.st==='wait');h2('대기 중인 경기 ('+w.length+')');
+    if(!w.length)note('대기 중인 경기가 없어요.');
+    w.forEach((m,i)=>line((i+1)+'.  '+tlab(m.a)+' vs '+tlab(m.b)));
+  }else{
+    const L=S.matches.filter(m=>m.s==='L'),kp=vk(),num={},tm={};
+    L.forEach((m,i)=>{num[m.id]=i+1;(tm[m.a]=tm[m.a]||[]).push(i+1);(tm[m.b]=tm[m.b]||[]).push(i+1)});
+    const P=[];S.groups.forEach((g,i)=>g.teams.forEach((t,k)=>t.forEach((pi,q)=>P.push([g.players[pi]||'?',gn(i),g.players[t[1-q]]||'?',(tm[i+':'+k]||[]).map(x=>x+'번째').join(', ')||'-']))));
+    P.sort((a,b)=>a[0].localeCompare(b[0],'ko'));
+    h2('참가자별 안내');tbl(['이름','그룹','팀원','예선 경기 순서'],P,[.22,.2,.22,.36],[]);
+    h2('그룹·팀 편성');S.groups.forEach((g,i)=>{sub(gn(i)+' · '+g.nt+'팀');g.teams.forEach((t,k)=>line(tlab(i+':'+k)))});
+    h2('예선 경기 순서 (조별 리그전)');note('코트 '+S.courts+'개 · 진행 상황에 따라 순서가 일부 바뀔 수 있어요');
+    L.forEach(m=>line(num[m.id]+'.  '+tlab(m.a)+' vs '+tlab(m.b)));
+    if(kp.length){h2('본선 토너먼트');kp.forEach(([x,y],k)=>{sub(gn(x)+'·'+gn(y)+' 본선');tree(k,true,L.length+k*4+1)})}
+  }
+  add(PD+8,()=>{});
+  const sc=Math.min(2,Math.sqrt(16e6/(W*H))),cv=document.createElement('canvas');cv.width=Math.round(W*sc);cv.height=Math.round(H*sc);
+  const c=cv.getContext('2d');c.scale(sc,sc);c.fillStyle='#eaf1ee';c.fillRect(0,0,W,H);c.fillStyle='#fff';rrect(c,PD,top,W-2*PD,H-top-PD,16);c.fill();c.strokeStyle=BD;c.lineWidth=1;c.stroke();
+  cmds.forEach(([y,fn])=>fn(c,y));
+  return await new Promise((ok,no)=>cv.toBlob(b=>b?ok(b):no(new Error('png')),'image/png'));
+}
+async function imgSave(name,kind){try{toast('그림을 만드는 중이에요…');await dlFile(name,await pngOf(kind))}catch(e){console.error(e);toast('그림을 만들지 못했어요. 파일(HTML)로 저장해 주세요.')}}
+async function saveResImg(){return imgSave('장유클럽 배드민턴 경기 결과.png','res')}
+async function saveBrImg(){return imgSave('장유클럽 배드민턴 경기 대진표.png','br')}
+async function dlFile(name,data){
+  let dl=null;try{dl=window.claude?await window.claude.use('downloads'):null}catch(e){}
+  if(dl){try{await dl.save({filename:name,data});toast('파일을 저장했어요.')}catch(e){if(!e||e.code!=='declined')toast('저장하지 못했어요. 잠시 후 다시 눌러 주세요.')}return}
+  try{const u=URL.createObjectURL((data instanceof Blob?data:new Blob([data],{type:'text/html;charset=utf-8'}))),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);toast('다운로드를 시작했어요. 다운로드 폴더를 확인해 주세요.')}
+  catch(e){toast('이 화면에서는 저장할 수 없어요.')}
+}
+function snapHtml(){
+  const d=new Date(),p=n=>String(n).padStart(2,'0'),ds=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes()),kp=vk();
+  let b='<h2>최종 결과</h2>'+vS6b();
+  if(kp.length){b+='<h2>본선 토너먼트</h2><div class="grid">';kp.forEach(([x,y],k)=>{b+='<div class="card" style="grid-column:1/-1"><div class="ch"><span>'+esc(gn(x)+'·'+gn(y))+'</span><span class="bd f">본선</span></div>'+tree(k)+'</div>'});b+='</div>'}
+  b+='<h2>조별 순위와 예선 결과</h2><div class="grid">';
+  S.groups.forEach((g,i)=>{const ok=gdone(i),st=stand(i),ms=S.matches.filter(m=>m.g===i&&m.s==='L');
+    b+='<div class="card"><div class="ch"><span>'+esc(gn(i))+'</span><span class="bd">'+(ok?'예선 종료':ms.filter(m=>m.st==='done').length+'/'+ms.length+' 경기')+'</span></div>';
+    if(g.nt<2)b+='<div class="mu">1팀뿐이라 경기가 없어요.</div>';
+    else{b+='<table><tr><th>순위</th><th class="l">팀</th><th>승</th><th>패</th><th>득실</th></tr>';
+      st.forEach((t,j)=>{b+='<tr class="'+(ok&&j===0?'top':'')+'"><td>'+(j+1)+'</td><td class="l">'+lab(t.id)+'</td><td>'+t.w+'</td><td>'+t.l+'</td><td>'+(t.pf-t.pa>0?'+':'')+(t.pf-t.pa)+'</td></tr>'});
+      b+='</table>'+ms.map(m=>row(m,1)).join('')}
+    b+='</div>'});
+  b+='</div><h2>코트 현황</h2><div class="grid">';
+  for(let c=1;c<=S.courts;c++){const m=S.matches.find(m=>m.st==='play'&&m.court===c);
+    b+='<div class="card court'+(m?' live':'')+'"><div class="ch"><span>코트 '+c+'</span>'+(m?bd(m):'')+'</div>'+(m?'<div>'+lab(m.a)+'</div><div class="mu">vs</div><div>'+lab(m.b)+'</div>':'<div class="mu">비어 있음</div>')+'</div>'}
+  const w=S.matches.filter(m=>m.st==='wait');
+  b+='</div><h2>대기 중인 경기 ('+w.length+')</h2><div class="card">'+(w.length?w.map((m,i)=>'<div class="q"><span class="n">'+(i+1)+'</span><div>'+bd(m)+' '+lab(m.a)+' <span class="mu">vs</span> '+lab(m.b)+'</div></div>').join(''):'<div class="mu">대기 중인 경기가 없어요.</div>')+'</div>';
+  return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>장유클럽 배드민턴 경기 결과</title><style>'+document.querySelector('style').textContent+'</style></head><body><div class="wrap">'+topHtml('장유클럽 배드민턴 경기 결과')+'<div class="by">저장 시각: '+ds+' · 제작: tckang</div>'+document.querySelector('#prog').outerHTML.replace(/<div class="eta">.*?<\/div>/,'')+b+'</div></body></html>';
+}
+function vS6(){return ready()?'<button class="pri" onclick="saveRes()" data-ok="1">💾 경기 결과 저장하기</button> <button class="pri" onclick="saveResImg()" data-ok="1">🖼️ 그림으로 저장</button><div class="sub" style="margin-top:6px">5단계(경기 현황)와 6단계(결과) 내용을 한 화면으로 모아 HTML 파일로 저장해요. 저장한 파일은 인터넷 브라우저에서 열어 볼 수 있어요.</div>'+vS6b():gate()}
+function vS6b(){
+  if(!ready())return gate();
+  const kp=vk(),inK=new Set(kp.flat());
+  let h='<div class="grid">';
+  S.groups.forEach((g,i)=>{if(inK.has(i))return;const ok=gdone(i);
+    h+='<div class="card"><div class="ch"><span>'+esc(gn(i))+'</span><span class="bd">예선 최종</span></div>'+(ok?'':'<div class="mu">예선이 진행 중이에요. 현재 순위예요.</div>')+med(stand(i).slice(0,3).map(t=>t.id))+'</div>'});
+  kp.forEach(([x,y],k)=>{const F=M(k,'F'),T=M(k,'T'),fd=F&&F.st==='done',td=T&&T.st==='done';
+    h+='<div class="card"><div class="ch"><span>'+esc(gn(x)+'·'+gn(y))+'</span><span class="bd f">본선 최종</span></div>'+(fd&&td?'':'<div class="mu">본선이 진행 중이에요.</div>')+med([win(F),los(F),win(T)])+'</div>'});
+  return h+'</div>';
+}
+function normPro(){S.groups.forEach(g=>{if(!g.pro||g.pro.length!==g.players.length)g.pro=g.players.map((_,i)=>!!(g.pro&&g.pro[i]))})}
+function render(){
+  normPro();sync();fill();save();stat();
+  const tot=S.groups.reduce((n,g)=>n+g.nt*(g.nt-1)/2,0)+vk().length*4,dn=S.matches.filter(m=>m.st==='done').length,p=tot?Math.round(dn/tot*100):0;
+  const rem=Math.max(0,tot-dn),eta=tot?(rem?'예상 종료 시간: '+Math.ceil(rem/Math.max(1,S.courts))*14+'분 후에 종료 예정':'모든 경기가 종료되었어요.'):'';
+  $('#prog').innerHTML='<div class="ch"><span>전체 '+tot+'경기 · 완료 '+dn+'경기</span><span>'+p+'%</span></div><div class="pb"><i style="width:'+p+'%"></i></div><div class="eta">'+eta+'</div>';
+  const names=['그룹','팀 수','선수·팀','본선','경기','결과'];
+  $('#steps').innerHTML=names.map((n,i)=>'<button class="'+(S.step===i+1?'on':'')+'" onclick="go('+(i+1)+')">'+(i+1)+'<br>'+n+'</button>').join('');
+  $('#app').innerHTML=[vS1,vS2,vS3,vS4,vS5,vS6][S.step-1]();
+  $('#dlg').innerHTML=S.step===3&&S.tconf===false&&!S.manual&&allT()&&!isRO()?modal():'';
+  if(isRO())lock();
+  $('#nav').innerHTML=(S.step>1?'<button class="gh" onclick="go('+(S.step-1)+')">← 이전 단계</button>':'<span></span>')+(S.step<6?'<button class="pri" onclick="go('+(S.step+1)+')">다음 단계 →</button>':'<span></span>');
+}
+load();render();
+(function(){
+  if(!CFG){CONN=2;stat();return}
+  const fb=window.firebase;
+  try{fb.initializeApp(window.FIREBASE_CONFIG);FDB=fb.firestore();FAUTH=fb.auth()}catch(e){CFG=false;CONN=2;stat();render();return}
+  REF=FDB.collection('club').doc('state');
+  CT=setTimeout(()=>{if(CONN===0){CONN=3;stat()}},10000);
+  FAUTH.onAuthStateChanged(u=>{USER=u||null;NOPERM=false;if(USER&&REX===false){LAST='';push()}stat();render()});
+  REF.onSnapshot(snap=>{
+    CONN=1;clearTimeout(CT);REX=snap.exists;
+    if(snap.exists){const d=snap.data();REV=d.rev||0;applyStr(d.v)}
+    else{REV=0;if(USER&&!snap.metadata.hasPendingWrites){LAST='';push()}}
+    stat();render();
+  },e=>{CONN=2;clearTimeout(CT);toast('실시간 연결이 끊겼어요. 인터넷 연결을 확인해 주세요.');stat()});
+})();
+document.addEventListener('focusout',()=>{if(PEND)setTimeout(()=>{if(PEND&&!isTyping()){PEND=false;render()}},60)});
+</script>
+</body>
+</html>
